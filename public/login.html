@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGE - Login</title>
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+  <div class="login-container">
+
+    <h2>SIGE</h2>
+
+    <input type="text" id="username" placeholder="Usuario">
+
+    <input type="password" id="password" placeholder="Contraseña">
+
+    <button onclick="login()">Ingresar</button>
+
+    <div id="mensaje"></div>
+
+  </div>
+
+  <script>
+
+    async function login() {
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      try {
+
+        const response = await fetch('/api/login', {
+
+          method: 'POST',
+
+          headers: {
+            'Content-Type': 'application/json'
+          },
+
+          body: JSON.stringify({
+            username,
+            password
+          })
+
+        });
+
+        const data = await response.json();
+
+        const mensaje = document.getElementById('mensaje');
+
+        if (data.success) {
+
+          mensaje.style.color = 'green';
+
+          sessionStorage.setItem('usuarioActivo', data.usuario[1]);
+
+          mensaje.innerText = 'Bienvenido ' + data.usuario[1];
+
+          setTimeout(() => {
+          window.location.href = 'menu.html';
+          }, 1000);
+
+        } else {
+
+          mensaje.style.color = 'red';
+
+          mensaje.innerText = data.message;
+        }
+
+      } catch (error) {
+
+        console.error(error);
+
+        const mensaje = document.getElementById('mensaje');
+
+        mensaje.style.color = 'red';
+
+        mensaje.innerText = 'No se pudo conectar con el servidor';
+      }
+    }
+
+  </script>
+
+</body>
+</html>

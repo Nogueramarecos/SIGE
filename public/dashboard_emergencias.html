@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard de Emergencias</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>SIGE - Dashboard de Emergencias</h1>
+  </header>
+
+  <div class="contenedor">
+
+    <div class="cards">
+      <div class="card">
+        <h3>Total Emergencias</h3>
+        <p id="total">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Pendientes</h3>
+        <p id="pendientes">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Resueltas</h3>
+        <p id="resueltas">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Prioridad Alta</h3>
+        <p id="alta">0</p>
+      </div>
+    </div>
+
+    <div class="graficos">
+      <div class="grafico">
+        <h3>Emergencias por Estado</h3>
+        <canvas id="graficoEstado"></canvas>
+      </div>
+
+      <div class="grafico">
+        <h3>Emergencias por Prioridad</h3>
+        <canvas id="graficoPrioridad"></canvas>
+      </div>
+    </div>
+
+    <a href="menu.html" class="volver">⬅ Volver al Menú</a>
+
+  </div>
+
+  <script src="js/dashboard.js"></script>
+
+</body>
+</html>

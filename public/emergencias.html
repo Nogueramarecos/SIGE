@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>SIGE - Emergencias</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <h2>SIGE</h2>
+    <a href="menu.html">🏠 Inicio</a>
+    <a href="dashboard_emergencias.html">📊 Dashboard</a>
+    <a href="emergencias.html">🚨 Emergencias</a>
+    <a href="reportes_emergencias.html">📄 Reportes</a>
+    <a href="login.html">🚪 Cerrar sesión</a>
+  </aside>
+
+  <main class="main">
+
+    <section class="header">
+      <h1>Gestión de Emergencias</h1>
+      <p>Registrar, actualizar, listar y eliminar emergencias del sistema.</p>
+    </section>
+
+    <section class="form-card">
+      <h2 id="tituloFormulario">Registrar Emergencia</h2>
+
+      <input type="hidden" id="emergencia_id">
+
+      <div class="form-grid">
+        <select id="tipo">
+          <option value="">Seleccione tipo</option>
+          <option value="Incendio">Incendio</option>
+          <option value="Accidente">Accidente</option>
+          <option value="Robo">Robo</option>
+          <option value="Salud">Salud</option>
+          <option value="Otro">Otro</option>
+        </select>
+
+        <select id="prioridad">
+          <option value="">Seleccione prioridad</option>
+          <option value="Alta">Alta</option>
+          <option value="Media">Media</option>
+          <option value="Baja">Baja</option>
+        </select>
+
+        <select id="estado">
+          <option value="Pendiente">Pendiente</option>
+          <option value="En proceso">En proceso</option>
+          <option value="Resuelto">Resuelto</option>
+        </select>
+
+        <input type="text" id="ciudad" placeholder="Ciudad">
+        <input type="text" id="direccion" placeholder="Dirección">
+      </div>
+
+      <br>
+
+      <textarea id="descripcion" rows="3" placeholder="Descripción de la emergencia"></textarea>
+
+      <button class="btn btn-guardar" onclick="guardarEmergencia()">Guardar</button>
+      <button class="btn btn-cancelar" id="btnCancelar" onclick="cancelarEdicion()">Cancelar edición</button>
+    </section>
+
+    <section class="table-card">
+      <h2>Listado de Emergencias</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Prioridad</th>
+            <th>Estado</th>
+            <th>Ciudad</th>
+            <th>Dirección</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody id="tablaEmergencias"></tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <script>
+    async function cargarEmergencias() {
+      const response = await fetch('/api/emergencias');
+      const datos = await response.json();
+
+      let filas = '';
+
+      datos.forEach(e => {
+        filas += `
+          <tr>
+            <td>${e.EMERGENCIA_ID}</td>
+            <td>${e.TIPO}</td>
+            <td><span class="badge ${clasePrioridad(e.PRIORIDAD)}">${e.PRIORIDAD}</span></td>
+            <td><span class="badge ${claseEstado(e.ESTADO)}">${e.ESTADO}</span></td>
+            <td>${e.CIUDAD || ''}</td>
+            <td>${e.DIRECCION || ''}</td>
+            <td>${e.DESCRIPCION || ''}</td>
+            <td>
+              <div class="acciones">
+                <button class="btn btn-editar" onclick='editarEmergencia(${JSON.stringify(e)})'>Editar</button>
+                <button class="btn btn-eliminar" onclick="eliminarEmergencia(${e.EMERGENCIA_ID})">Eliminar</button>
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+
+      document.getElementById('tablaEmergencias').innerHTML = filas;
+    }
+
+    function clasePrioridad(valor) {
+      valor = (valor || '').toLowerCase();
+      if (valor === 'alta') return 'alta';
+      if (valor === 'media') return 'media';
+      return 'baja';
+    }
+
+    function claseEstado(valor) {
+      valor = (valor || '').toLowerCase();
+      if (valor === 'pendiente') return 'pendiente';
+      if (valor === 'en proceso') return 'proceso';
+      return 'resuelto';
+    }
+
+    async function guardarEmergencia() {
+      const id = document.getElementById('emergencia_id').value;
+
+      const emergencia = {
+        tipo: document.getElementById('tipo').value,
+        prioridad: document.getElementById('prioridad').value,
+        estado: document.getElementById('estado').value,
+        ciudad: document.getElementById('ciudad').value,
+        direccion: document.getElementById('direccion').value,
+        descripcion: document.getElementById('descripcion').value
+      };
+
+      if (!emergencia.tipo || !emergencia.prioridad || !emergencia.ciudad) {
+        alert('Complete tipo, prioridad y ciudad');
+        return;
+      }
+
+      if (id) {
+        await fetch(`/api/emergencias/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(emergencia)
+        });
+
+        alert('Emergencia actualizada correctamente');
+      } else {
+        await fetch('/api/emergencias', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(emergencia)
+        });
+
+        alert('Emergencia registrada correctamente');
+      }
+
+      limpiarFormulario();
+      cargarEmergencias();
+    }
+
+    function editarEmergencia(e) {
+      document.getElementById('emergencia_id').value = e.EMERGENCIA_ID;
+      document.getElementById('tipo').value = e.TIPO;
+      document.getElementById('prioridad').value = e.PRIORIDAD;
+      document.getElementById('estado').value = e.ESTADO;
+      document.getElementById('ciudad').value = e.CIUDAD;
+      document.getElementById('direccion').value = e.DIRECCION;
+      document.getElementById('descripcion').value = e.DESCRIPCION;
+
+      document.getElementById('tituloFormulario').textContent = 'Actualizar Emergencia';
+      document.getElementById('btnCancelar').style.display = 'inline-block';
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    async function eliminarEmergencia(id) {
+      if (!confirm('¿Seguro que desea eliminar esta emergencia?')) return;
+
+      await fetch(`/api/emergencias/${id}`, {
+        method: 'DELETE'
+      });
+
+      alert('Emergencia eliminada correctamente');
+      cargarEmergencias();
+    }
+
+    function cancelarEdicion() {
+      limpiarFormulario();
+    }
+
+    function limpiarFormulario() {
+      document.getElementById('emergencia_id').value = '';
+      document.getElementById('tipo').value = '';
+      document.getElementById('prioridad').value = '';
+      document.getElementById('estado').value = 'Pendiente';
+      document.getElementById('ciudad').value = '';
+      document.getElementById('direccion').value = '';
+      document.getElementById('descripcion').value = '';
+
+      document.getElementById('tituloFormulario').textContent = 'Registrar Emergencia';
+      document.getElementById('btnCancelar').style.display = 'none';
+    }
+
+    cargarEmergencias();
+  </script>
+
+</body>
+</html>

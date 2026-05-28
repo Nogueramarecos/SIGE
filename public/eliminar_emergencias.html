@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>SIGE - Eliminar Emergencia</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <h2>SIGE</h2>
+
+    <a href="menu.html">🏠 Inicio</a>
+    <a href="dashboard_emergencias.html">📊 Dashboard</a>
+    <a href="listar_emergencias.html">🚨 Listar Emergencias</a>
+    <a href="crear_emergencias.html">➕ Crear Emergencia</a>
+    <a href="reportes_emergencias.html">📄 Reportes</a>
+    <a href="login.html">🚪 Cerrar sesión</a>
+  </aside>
+
+  <main class="main">
+
+    <section class="card">
+      <h1>Eliminar Emergencia</h1>
+      <p>Verifique los datos antes de eliminar el registro.</p>
+    </section>
+
+    <section class="card" id="detalle">
+      <p>Cargando emergencia...</p>
+    </section>
+
+    <section class="card">
+
+      <h2>Confirmación</h2>
+
+      <p>
+        ¿Está seguro que desea eliminar esta emergencia?
+      </p>
+
+      <div class="acciones">
+
+        <button
+          class="btn btn-eliminar"
+          onclick="eliminarEmergencia()">
+
+          🗑 Eliminar
+        </button>
+
+        <a
+          href="listar_emergencias.html"
+          class="btn btn-volver">
+
+          ⬅ Volver
+        </a>
+
+      </div>
+
+      <div id="mensaje" class="mensaje"></div>
+
+    </section>
+
+  </main>
+
+  <script src="js/eliminar_emergencias.js"></script>
+
+</body>
+</html>

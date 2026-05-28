@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>SIGE - Listar Emergencias</title>
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <h2>SIGE</h2>
+
+    <a href="menu.html">🏠 Inicio</a>
+    <a href="dashboard_emergencias.html">📊 Dashboard</a>
+    <a href="listar_emergencias.html">🚨 Listar Emergencias</a>
+    <a href="crear_emergencias.html">➕ Crear Emergencia</a>
+    <a href="reportes_emergencias.html">📄 Reportes</a>
+    <a href="login.html">🚪 Cerrar sesión</a>
+  </aside>
+
+  <main class="main">
+
+    <section class="header">
+      <h1>Listado de Emergencias</h1>
+      <p>Consulta general de emergencias registradas en el sistema SIGE.</p>
+    </section>
+
+    <section class="table-card">
+
+      <div class="acciones-superiores">
+        <a href="crear_emergencias.html" class="btn btn-crear">
+          ➕ Nueva Emergencia
+        </a>
+      </div>
+
+      <table id="tablaEmergencias" class="display">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Prioridad</th>
+            <th>Estado</th>
+            <th>Ciudad</th>
+            <th>Dirección</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody></tbody>
+      </table>
+
+    </section>
+
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+  <script src="js/listar_emergencias.js"></script>
+
+</body>
+</html>

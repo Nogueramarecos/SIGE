@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reportes de Emergencias</title>
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+  <header>
+    <h1>SIGE - Reportes de Emergencias</h1>
+  </header>
+
+  <div class="contenedor">
+
+    <h2>Seleccionar Reporte</h2>
+
+    <div class="menu-reportes">
+
+      <button class="btn-reporte" onclick="cargarReporte('general')">
+        📋 Reporte General
+      </button>
+
+      <button class="btn-reporte" onclick="cargarReporte('pendientes')">
+        🔴 Emergencias Pendientes
+      </button>
+
+      <button class="btn-reporte" onclick="cargarReporte('resueltas')">
+        🟢 Emergencias Resueltas
+      </button>
+
+      <button class="btn-reporte" onclick="cargarReporte('alta')">
+        ⚠️ Prioridad Alta
+      </button>
+
+    </div>
+
+    <div id="resultado">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Prioridad</th>
+            <th>Estado</th>
+            <th>Ciudad</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+
+        <tbody id="tabla-reportes">
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <a href="menu.html" class="volver">
+      ⬅ Volver al Menú
+    </a>
+
+  </div>
+
+  <script>
+
+    async function cargarReporte(tipo){
+
+      try{
+
+        const response = await fetch(`/api/reportes/${tipo}`);
+
+        const datos = await response.json();
+
+        let filas = '';
+
+        datos.forEach(e => {
+
+          filas += `
+            <tr>
+              <td>${e.EMERGENCIA_ID}</td>
+              <td>${e.TIPO}</td>
+              <td>${e.PRIORIDAD}</td>
+              <td>${e.ESTADO}</td>
+              <td>${e.CIUDAD}</td>
+              <td>${e.FECHA_REPORTE}</td>
+            </tr>
+          `;
+
+        });
+
+        document.getElementById('tabla-reportes').innerHTML = filas;
+
+      }catch(error){
+
+        console.error(error);
+        alert('Error al cargar reporte');
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
