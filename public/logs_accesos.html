@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>SIGE - Bitácora de Accesos</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <h2>SIGE</h2>
+
+    <a href="menu.html">🏠 Inicio</a>
+    <a href="dashboard_emergencias.html">📊 Dashboard</a>
+    <a href="listar_emergencias.html">🚨 Emergencias</a>
+    <a href="crear_emergencias.html">➕ Crear Emergencia</a>
+    <a href="instituciones.html">🏥 Instituciones</a>
+    <a href="unidades.html">🚑 Unidades</a>
+    <a href="usuarios.html">👥 Usuarios</a>
+    <a href="auditoria_emergencias.html">📋 Auditoría</a>
+    <a href="logs_accesos.html">🕒 Bitácora</a>
+    <a href="reportes_emergencias.html">📄 Reportes</a>
+    <a href="#" onclick="cerrarSesion()">🚪 Cerrar sesión</a>
+  </aside>
+
+  <main class="main">
+
+    <section class="header">
+      <h1>SIGE - Bitácora de Accesos</h1>
+      <p>Historial de inicios de sesión y accesos al sistema.</p>
+    </section>
+
+    <section class="table-card">
+
+      <h2>Historial de Inicios de Sesión</h2>
+
+      <table id="tablaLogs">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Rol</th>
+            <th>Acción</th>
+            <th>Fecha</th>
+            <th>IP</th>
+          </tr>
+        </thead>
+
+        <tbody></tbody>
+      </table>
+
+    </section>
+
+    <a href="menu.html" class="volver">
+      ⬅ Volver al Menú
+    </a>
+
+  </main>
+
+  <script src="Frontend-Routes/auth.js"></script>
+  <script src="Frontend-Routes/logs_accesos.js"></script>
+
+</body>
+</html>

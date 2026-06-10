@@ -18,7 +18,7 @@
     <a href="listar_emergencias.html">🚨 Listar Emergencias</a>
     <a href="crear_emergencias.html">➕ Crear Emergencia</a>
     <a href="reportes_emergencias.html">📄 Reportes</a>
-    <a href="login.html">🚪 Cerrar sesión</a>
+    <a href="#" onclick="cerrarSesion()">🚪 Cerrar sesión</a>
   </aside>
 
   <main class="main">
@@ -64,7 +64,16 @@
 
   </main>
 
-  <script src="js/eliminar_emergencias.js"></script>
+  <script src="Frontend-Routes/auth.js"></script>
 
+<script>
+  verificarSesion();
+
+  permitirRoles([
+    'Administrador'
+  ]);
+</script>
+
+<script src="Frontend-Routes/eliminar_emergencias.js"></script>
 </body>
 </html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SIGE - Auditoría de Emergencias</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <h2>SIGE</h2>
+
+        <a href="menu.html">🏠 Inicio</a>
+        <a href="dashboard_emergencias.html">📊 Dashboard</a>
+        <a href="listar_emergencias.html">🚨 Listar Emergencias</a>
+        <a href="crear_emergencias.html">➕ Crear Emergencia</a>
+        <a href="instituciones.html">🏥 Instituciones</a>
+        <a href="unidades.html">🚑 Unidades</a>
+        <a href="reportes_emergencias.html">📄 Reportes</a>
+        <a href="auditoria_emergencias.html">📋 Auditoría</a>
+        <a href="#" onclick="cerrarSesion()">🚪 Cerrar sesión</a>
+    </aside>
+
+    <main class="main">
+
+        <section class="header">
+            <h1>Auditoría de Emergencias</h1>
+            <p>Historial de cambios realizados sobre las emergencias registradas.</p>
+        </section>
+
+        <section class="table-card">
+
+            <table id="tablaAuditoria">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Emergencia</th>
+                        <th>Acción</th>
+                        <th>Estado Anterior</th>
+                        <th>Estado Nuevo</th>
+                        <th>Descripción Anterior</th>
+                        <th>Descripción Nueva</th>
+                        <th>Fecha</th>
+                        <th>Usuario BD</th>
+                    </tr>
+                </thead>
+
+                <tbody></tbody>
+
+            </table>
+
+        </section>
+
+        <a href="menu.html" class="volver">
+            ⬅ Volver al Menú
+        </a>
+
+    </main>
+
+    <script src="Frontend-Routes/auth.js"></script>
+
+    <script>
+        verificarSesion();
+
+        permitirRoles([
+            'Administrador',
+            'Supervisor'
+        ]);
+    </script>
+
+    <script src="Frontend-Routes/auditoria_emergencias.js"></script>
+
+</body>
+
+</html>

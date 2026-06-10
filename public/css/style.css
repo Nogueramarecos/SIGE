@@ -1,14 +1,5 @@
 /* =====================================================
-   SIGE - STYLE GENERAL
-   Archivos incluidos:
-   actualizar_emergencias
-   crear_emergencias
-   dashboard
-   eliminar_emergencias
-   emergencias
-   listar_emergencias
-   menu
-   reportes
+   SIGE - STYLE GENERAL ROSITA CUTE
 ===================================================== */
 
 * {
@@ -18,9 +9,10 @@
 
 body {
   margin: 0;
-  background: #eef2f3;
+  background: #fff0f6;
   display: flex;
   min-height: 100vh;
+  color: #5a2a40;
 }
 
 /* =====================================================
@@ -29,7 +21,7 @@ body {
 
 .sidebar {
   width: 250px;
-  background: #0d6b68;
+  background: #d63384;
   color: white;
   padding: 25px 15px;
 }
@@ -37,6 +29,7 @@ body {
 .sidebar h2 {
   text-align: center;
   margin-bottom: 35px;
+  color: white;
 }
 
 .sidebar a {
@@ -45,13 +38,13 @@ body {
   text-decoration: none;
   padding: 14px 18px;
   margin-bottom: 10px;
-  border-radius: 8px;
+  border-radius: 10px;
   transition: 0.3s;
   font-weight: bold;
 }
 
 .sidebar a:hover {
-  background: #09524f;
+  background: #ff69b4;
   padding-left: 25px;
 }
 
@@ -76,34 +69,41 @@ body {
 .card,
 .grafico {
   background: white;
-  padding: 20px;
-  border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  padding: 22px;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.18);
   margin-bottom: 25px;
 }
 
 .header h1,
 h1 {
   margin-top: 0;
-  color: #0d6b68;
+  color: #d63384;
 }
 
 .header p {
-  color: #555;
+  color: #6b4b5a;
   margin-bottom: 0;
 }
 
 /* =====================================================
-   HEADER SIMPLE PARA DASHBOARD / REPORTES
+   HEADER SIMPLE
 ===================================================== */
 
 header {
-  background: #0d6b68;
+  background: #ff69b4;
   color: white;
-  padding: 20px;
+  padding: 20px 30px;
   text-align: center;
-  width: 20%;
-  margin-bottom: 30px;
+  width: 100%;
+  margin-bottom: 25px;
+  border-radius: 0 0 18px 18px;
+  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.25);
+}
+
+header h1 {
+  color: white;
+  margin: 0;
 }
 
 /* =====================================================
@@ -121,9 +121,18 @@ select,
 textarea {
   width: 100%;
   padding: 13px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 1px solid #f3b6d0;
+  border-radius: 10px;
   font-size: 15px;
+  background: #fffafd;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #ff69b4;
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.18);
 }
 
 textarea {
@@ -132,7 +141,7 @@ textarea {
 
 label {
   font-weight: bold;
-  color: #333;
+  color: #5a2a40;
 }
 
 /* =====================================================
@@ -144,7 +153,7 @@ label {
 .btn-reporte {
   border: none;
   padding: 12px 18px;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: bold;
   text-decoration: none;
@@ -155,20 +164,21 @@ label {
 .btn:hover,
 .volver:hover,
 .btn-reporte:hover {
-  opacity: 0.9;
+  opacity: 0.95;
+  transform: translateY(-2px);
 }
 
 .btn-crear,
 .btn-guardar,
 .volver {
-  background: #0d6b68;
+  background: #ff69b4;
   color: white;
 }
 
 .btn-crear:hover,
 .btn-guardar:hover,
 .volver:hover {
-  background: #09524f;
+  background: #d63384;
 }
 
 .btn-editar {
@@ -187,13 +197,13 @@ label {
 
 .btn-volver,
 .btn-cancelar {
-  background: #6c757d;
+  background: #8b6f7f;
   color: white;
 }
 
 .btn-volver:hover,
 .btn-cancelar:hover {
-  background: #545b62;
+  background: #6f5664;
 }
 
 .btn-cancelar {
@@ -226,22 +236,24 @@ table {
   width: 100%;
   border-collapse: collapse;
   background: white;
+  border-radius: 14px;
+  overflow: hidden;
 }
 
 th {
-  background: #0d6b68 !important;
+  background: #ff69b4 !important;
   color: white !important;
   padding: 12px;
 }
 
 td {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #f4d5e4;
   text-align: center;
 }
 
 tr:hover {
-  background: #f5f5f5;
+  background: #fff0f6;
 }
 
 /* =====================================================
@@ -288,16 +300,13 @@ tr:hover {
   background: #f0ad4e;
 }
 
-.atendida {
+.atendida,
+.resuelto {
   background: #5cb85c;
 }
 
 .cancelada {
   background: #6c757d;
-}
-
-.resuelto {
-  background: #5cb85c;
 }
 
 /* =====================================================
@@ -307,7 +316,7 @@ tr:hover {
 .mensaje {
   margin-top: 20px;
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 10px;
   display: none;
   font-weight: bold;
 }
@@ -323,7 +332,7 @@ tr:hover {
 }
 
 /* =====================================================
-   DASHBOARD
+   DASHBOARD / CARDS
 ===================================================== */
 
 .cards {
@@ -336,18 +345,19 @@ tr:hover {
 .card {
   text-align: center;
   text-decoration: none;
-  color: #333;
+  color: #5a2a40;
+  transition: 0.3s;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 20px rgba(214, 51, 132, 0.28);
 }
 
 .card h3,
 .card strong {
   margin: 0;
-  color: #0d6b68;
+  color: #d63384;
 }
 
 .card span {
@@ -357,7 +367,7 @@ tr:hover {
 }
 
 .card p {
-  color: #666;
+  color: #6b4b5a;
   font-size: 14px;
   margin-top: 10px;
 }
@@ -367,6 +377,10 @@ tr:hover {
   font-weight: bold;
   margin: 10px 0 0;
 }
+
+/* =====================================================
+   GRÁFICOS
+===================================================== */
 
 .graficos {
   display: grid;
@@ -391,16 +405,15 @@ tr:hover {
 
 .btn-reporte {
   background: white;
-  color: #333;
+  color: #5a2a40;
   padding: 20px;
   width: 220px;
   font-size: 18px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.18);
 }
 
 .btn-reporte:hover {
-  transform: translateY(-5px);
-  background: #f4f4f4;
+  background: #fff0f6;
 }
 
 /* =====================================================
@@ -413,7 +426,7 @@ tr:hover {
 }
 
 .dato strong {
-  color: #0d6b68;
+  color: #d63384;
 }
 
 /* =====================================================
@@ -422,10 +435,99 @@ tr:hover {
 
 .dt-search input,
 .dt-length select {
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 1px solid #f3b6d0;
+  border-radius: 10px;
   padding: 8px;
   margin-left: 6px;
+}
+
+/* =====================================================
+   LOGIN MODERNO ROSITA
+===================================================== */
+
+.login-body {
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #ffb6d9, #ff69b4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  width: 420px;
+  background: white;
+  padding: 38px 35px;
+  border-radius: 24px;
+  box-shadow: 0 15px 35px rgba(214, 51, 132, 0.35);
+  text-align: center;
+}
+
+.login-icon {
+  width: 75px;
+  height: 75px;
+  margin: 0 auto 15px;
+  background: #ffd6e7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+}
+
+.login-container h2 {
+  margin: 0;
+  color: #d63384;
+  font-size: 34px;
+  letter-spacing: 2px;
+}
+
+.login-subtitle {
+  color: #6b4b5a;
+  font-size: 14px;
+  margin: 10px 0 28px;
+}
+
+.login-form input {
+  margin-bottom: 16px;
+  background: #fffafd;
+  border: 1px solid #f3b6d0;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: #ff69b4;
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.18);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: #d63384;
+  transform: translateY(-2px);
+}
+
+.login-success {
+  margin-top: 18px;
+  color: #155724;
+  font-weight: bold;
+}
+
+.login-error {
+  margin-top: 18px;
+  color: #c9302c;
+  font-weight: bold;
 }
 
 /* =====================================================
@@ -454,4 +556,73 @@ tr:hover {
   .graficos {
     grid-template-columns: 1fr;
   }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    width: 90%;
+    padding: 30px 22px;
+  }
+}
+/* =====================================================
+   AJUSTE FINAL - LISTADO DE EMERGENCIAS
+===================================================== */
+
+.main {
+  width: calc(100% - 250px);
+}
+
+.table-card {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.acciones-superiores {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+#tablaEmergencias {
+  width: 100% !important;
+  table-layout: auto;
+}
+
+#tablaEmergencias th,
+#tablaEmergencias td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 14px 12px;
+  font-size: 14px;
+}
+
+#tablaEmergencias th {
+  white-space: nowrap;
+}
+
+#tablaEmergencias td:nth-child(6),
+#tablaEmergencias td:nth-child(9) {
+  max-width: 180px;
+  white-space: normal;
+}
+
+#tablaEmergencias .btn {
+  display: block;
+  width: 90px;
+  margin: 5px auto;
+  padding: 9px 12px;
+}
+
+.dt-layout-row {
+  margin-bottom: 18px;
+  align-items: center;
+}
+
+.dt-search input {
+  width: 260px !important;
+}
+
+.dt-length select {
+  width: 80px !important;
 }

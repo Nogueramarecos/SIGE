@@ -1,110 +1,128 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reportes de Emergencias</title>
-  <link rel="stylesheet" href="css/style.css">
 
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-  <header>
-    <h1>SIGE - Reportes de Emergencias</h1>
-  </header>
+  <aside class="sidebar">
+    <h2>SIGE</h2>
 
-  <div class="contenedor">
+    <a href="menu.html">🏠 Inicio</a>
+    <a href="dashboard_emergencias.html">📊 Dashboard</a>
+    <a href="listar_emergencias.html">🚨 Emergencias</a>
+    <a href="instituciones.html">🏥 Instituciones</a>
+    <a href="unidades.html">🚑 Unidades</a>
+    <a href="reportes_emergencias.html">📄 Reportes</a>
+    <a href="login.html">🚪 Cerrar sesión</a>
+  </aside>
 
-    <h2>Seleccionar Reporte</h2>
+  <main class="main">
 
-    <div class="menu-reportes">
+    <section class="header">
+      <h1>SIGE - Reportes de Emergencias</h1>
+      <p>Consulta, exportación e impresión de reportes registrados.</p>
+    </section>
 
-      <button class="btn-reporte" onclick="cargarReporte('general')">
-        📋 Reporte General
-      </button>
+    <section class="form-card">
 
-      <button class="btn-reporte" onclick="cargarReporte('pendientes')">
-        🔴 Emergencias Pendientes
-      </button>
+      <h2>Seleccionar Reporte</h2>
 
-      <button class="btn-reporte" onclick="cargarReporte('resueltas')">
-        🟢 Emergencias Resueltas
-      </button>
+      <div class="menu-reportes">
 
-      <button class="btn-reporte" onclick="cargarReporte('alta')">
-        ⚠️ Prioridad Alta
-      </button>
+        <button class="btn-reporte" onclick="cargarReporte('general')">
+          📋 Reporte General
+        </button>
 
-    </div>
+        <button class="btn-reporte" onclick="cargarReporte('pendientes')">
+          🔴 Emergencias Pendientes
+        </button>
 
-    <div id="resultado">
+        <button class="btn-reporte" onclick="cargarReporte('resueltas')">
+          🟢 Emergencias Resueltas
+        </button>
 
-      <table>
+        <button class="btn-reporte" onclick="cargarReporte('alta')">
+          ⚠️ Prioridad Alta
+        </button>
 
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Tipo</th>
-            <th>Prioridad</th>
-            <th>Estado</th>
-            <th>Ciudad</th>
-            <th>Fecha</th>
-          </tr>
-        </thead>
+      </div>
 
-        <tbody id="tabla-reportes">
+      <div class="acciones">
 
-        </tbody>
+        <button class="btn-reporte" onclick="exportarExcel()">
+          📊 Exportar Excel
+        </button>
 
-      </table>
+        <button class="btn-reporte" onclick="exportarPDF()">
+          📄 Exportar PDF
+        </button>
 
-    </div>
+        <button class="btn-reporte" onclick="window.print()">
+          🖨 Imprimir
+        </button>
+
+      </div>
+
+    </section>
+
+    <section class="table-card">
+
+      <div id="resultado">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Tipo</th>
+              <th>Prioridad</th>
+              <th>Estado</th>
+              <th>Ciudad</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+
+          <tbody id="tabla-reportes">
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
 
     <a href="menu.html" class="volver">
       ⬅ Volver al Menú
     </a>
 
-  </div>
+  </main>
+
+  <script src="Frontend-Routes/auth.js"></script>
 
   <script>
+    verificarSesion();
 
-    async function cargarReporte(tipo){
-
-      try{
-
-        const response = await fetch(`/api/reportes/${tipo}`);
-
-        const datos = await response.json();
-
-        let filas = '';
-
-        datos.forEach(e => {
-
-          filas += `
-            <tr>
-              <td>${e.EMERGENCIA_ID}</td>
-              <td>${e.TIPO}</td>
-              <td>${e.PRIORIDAD}</td>
-              <td>${e.ESTADO}</td>
-              <td>${e.CIUDAD}</td>
-              <td>${e.FECHA_REPORTE}</td>
-            </tr>
-          `;
-
-        });
-
-        document.getElementById('tabla-reportes').innerHTML = filas;
-
-      }catch(error){
-
-        console.error(error);
-        alert('Error al cargar reporte');
-
-      }
-
-    }
-
+    permitirRoles([
+      'Administrador',
+      'ADMINISTRADOR',
+      'Supervisor',
+      'SUPERVISOR'
+    ]);
   </script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+  <script src="Frontend-Routes/reportes_emergencias.js"></script>
+
 </body>
+
 </html>

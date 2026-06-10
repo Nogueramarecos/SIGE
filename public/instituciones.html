@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>SIGE - Instituciones</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <h2>SIGE</h2>
+
+    <a href="menu.html">🏠 Inicio</a>
+    <a href="dashboard_emergencias.html">📊 Dashboard</a>
+    <a href="listar_emergencias.html">🚨 Emergencias</a>
+    <a href="instituciones.html">🏥 Instituciones</a>
+    <a href="reportes_emergencias.html">📄 Reportes</a>
+  </aside>
+
+  <main class="main">
+
+    <section class="header">
+      <h1>Gestión de Instituciones</h1>
+      <p>Hospitales, Bomberos, Policía y Ambulancias.</p>
+    </section>
+
+    <section class="form-card">
+
+      <div class="form-grid">
+
+        <div>
+          <label>Nombre</label>
+          <input type="text" id="nombre">
+        </div>
+
+        <div>
+          <label>Tipo</label>
+          <select id="tipo">
+            <option value="">Seleccione</option>
+            <option value="HOSPITAL">Hospital</option>
+            <option value="BOMBEROS">Bomberos</option>
+            <option value="POLICIA">Policía</option>
+            <option value="AMBULANCIA">Ambulancia</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Teléfono</label>
+          <input type="text" id="telefono">
+        </div>
+
+        <div>
+          <label>Ciudad</label>
+          <input type="text" id="ciudad">
+        </div>
+
+      </div>
+
+      <br>
+
+      <div>
+        <label>Dirección</label>
+        <input type="text" id="direccion">
+      </div>
+
+      <br>
+
+      <button
+        class="btn btn-guardar"
+        onclick="guardarInstitucion()">
+
+        💾 Registrar Institución
+
+      </button>
+
+    </section>
+
+    <section class="form-card">
+
+      <table id="tablaInstituciones" class="display">
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Teléfono</th>
+            <th>Ciudad</th>
+            <th>Activo</th>
+          </tr>
+        </thead>
+
+        <tbody></tbody>
+
+      </table>
+
+    </section>
+    <a href="menu.html" class="volver">
+      ⬅ Volver al Menú
+    </a>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+  <script src="Frontend-Routes/instituciones.js"></script>
+
+</body>
+</html>

@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>SIGE - Listar Emergencias</title>
+  <title>SIGE - Usuarios</title>
 
-  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
 </head>
 
 <body>
@@ -15,10 +15,12 @@
 
     <a href="menu.html">🏠 Inicio</a>
     <a href="dashboard_emergencias.html">📊 Dashboard</a>
-    <a href="listar_emergencias.html">🚨 Listar Emergencias</a>
+    <a href="listar_emergencias.html">🚨 Emergencias</a>
     <a href="crear_emergencias.html">➕ Crear Emergencia</a>
     <a href="instituciones.html">🏥 Instituciones</a>
     <a href="unidades.html">🚑 Unidades</a>
+    <a href="usuarios.html">👥 Usuarios</a>
+    <a href="auditoria_emergencias.html">📋 Auditoría</a>
     <a href="reportes_emergencias.html">📄 Reportes</a>
     <a href="#" onclick="cerrarSesion()">🚪 Cerrar sesión</a>
   </aside>
@@ -26,42 +28,44 @@
   <main class="main">
 
     <section class="header">
-      <h1>Listado de Emergencias</h1>
-      <p>Consulta general de emergencias registradas en el sistema SIGE.</p>
+      <h1>Gestión de Usuarios</h1>
+      <p>Administración de usuarios, roles y estados del sistema SIGE.</p>
     </section>
 
     <section class="table-card">
 
       <div class="acciones-superiores">
-        <a href="crear_emergencias.html" class="btn btn-crear">
-          ➕ Nueva Emergencia
+
+        <a href="crear_usuarios.html" class="btn btn-crear">
+          ➕ Nuevo Usuario
         </a>
 
-        <a href="menu.html" class="btn btn-volver">
-          ⬅ Volver al Menú
-        </a>
       </div>
 
-      <table id="tablaEmergencias" class="display">
+      <table id="tablaUsuarios" class="display">
+
         <thead>
           <tr>
             <th>ID</th>
-            <th>Tipo</th>
-            <th>Prioridad</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Usuario</th>
+            <th>Rol</th>
             <th>Estado</th>
-            <th>Ciudad</th>
-            <th>Dirección</th>
-            <th>Institución</th>
-            <th>Unidad</th>
-            <th>Descripción</th>
             <th>Acciones</th>
           </tr>
         </thead>
 
-        <tbody></tbody>
+        <tbody id="tabla-usuarios"></tbody>
+
       </table>
 
     </section>
+
+    <a href="menu.html" class="volver">
+      ⬅ Volver al Menú
+    </a>
 
   </main>
 
@@ -75,12 +79,11 @@
 
     permitirRoles([
       'Administrador',
-      'Supervisor',
-      'Operador'
+      'ADMINISTRADOR'
     ]);
   </script>
 
-  <script src="Frontend-Routes/listar_emergencias.js"></script>
+  <script src="Frontend-Routes/usuarios.js"></script>
 
 </body>
 </html>

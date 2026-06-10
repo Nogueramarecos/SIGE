@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>SIGE - Editar Usuario</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <h2>SIGE</h2>
+
+    <a href="menu.html">🏠 Inicio</a>
+    <a href="usuarios.html">👥 Usuarios</a>
+    <a href="#" onclick="cerrarSesion()">🚪 Cerrar sesión</a>
+  </aside>
+
+  <main class="main">
+
+    <section class="header">
+      <h1>Editar Usuario</h1>
+      <p>Modificación de datos y rol del usuario.</p>
+    </section>
+
+    <section class="form-card">
+
+      <input type="hidden" id="usuario_id">
+
+      <label>Nombre</label>
+      <input type="text" id="nombre">
+
+      <label>Apellido</label>
+      <input type="text" id="apellido">
+
+      <label>Email</label>
+      <input type="email" id="email">
+
+      <label>Usuario</label>
+      <input type="text" id="username">
+
+      <label>Rol</label>
+      <select id="rol_id"></select>
+
+      <button class="btn btn-crear" onclick="actualizarUsuario()">
+        Guardar Cambios
+      </button>
+
+      <a href="usuarios.html" class="btn btn-volver">
+        ⬅ Volver
+      </a>
+
+      <a href="menu.html" class="btn-menu">
+        ⬅ Volver al Menú
+      </a>
+
+      <div id="mensaje"></div>
+
+    </section>
+
+  </main>
+
+  <script src="Frontend-Routes/auth.js"></script>
+
+  <script>
+    verificarSesion();
+
+    permitirRoles([
+      'Administrador',
+      'ADMINISTRADOR'
+    ]);
+  </script>
+
+  <script src="Frontend-Routes/editar_usuarios.js"></script>
+
+</body>
+</html>

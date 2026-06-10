@@ -4,37 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SIGE - Login</title>
-  <link rel="stylesheet" href="css/style.css">
 
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="login-body">
 
   <div class="login-container">
 
+    <div class="login-icon">🚨</div>
+
     <h2>SIGE</h2>
 
-    <input type="text" id="username" placeholder="Usuario">
+    <p class="login-subtitle">
+      Sistema Inteligente de Gestión de Emergencias
+    </p>
 
-    <input type="password" id="password" placeholder="Contraseña">
+    <div class="login-form">
 
-    <button onclick="login()">Ingresar</button>
+      <input
+        type="text"
+        id="username"
+        placeholder="Usuario"
+        required>
 
-    <div id="mensaje"></div>
+      <input
+        type="password"
+        id="password"
+        placeholder="Contraseña"
+        required>
+
+      <button onclick="login()" class="login-btn">
+        Ingresar
+      </button>
+
+      <div id="mensaje"></div>
+
+    </div>
 
   </div>
 
   <script>
-
     async function login() {
 
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
 
+      const mensaje = document.getElementById('mensaje');
+
+      if (!username || !password) {
+        mensaje.className = 'login-error';
+        mensaje.innerText = 'Ingrese usuario y contraseña';
+        return;
+      }
+
       try {
 
         const response = await fetch('/api/login', {
-
           method: 'POST',
 
           headers: {
@@ -42,47 +68,42 @@
           },
 
           body: JSON.stringify({
-            username,
-            password
+            usuario: username,
+            clave: password
           })
-
         });
 
         const data = await response.json();
 
-        const mensaje = document.getElementById('mensaje');
-
         if (data.success) {
 
-          mensaje.style.color = 'green';
+          localStorage.setItem('usuario', data.usuario);
+          localStorage.setItem('username', data.username);
+          localStorage.setItem('rol', data.rol);
 
-          sessionStorage.setItem('usuarioActivo', data.usuario[1]);
-
-          mensaje.innerText = 'Bienvenido ' + data.usuario[1];
+          mensaje.className = 'login-success';
+          mensaje.innerText = 'Bienvenido ' + data.usuario;
 
           setTimeout(() => {
-          window.location.href = 'menu.html';
+            window.location.href = 'menu.html';
           }, 1000);
 
         } else {
 
-          mensaje.style.color = 'red';
-
+          mensaje.className = 'login-error';
           mensaje.innerText = data.message;
+
         }
 
       } catch (error) {
 
         console.error(error);
 
-        const mensaje = document.getElementById('mensaje');
-
-        mensaje.style.color = 'red';
-
+        mensaje.className = 'login-error';
         mensaje.innerText = 'No se pudo conectar con el servidor';
+
       }
     }
-
   </script>
 
 </body>

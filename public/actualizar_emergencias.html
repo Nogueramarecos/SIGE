@@ -5,8 +5,6 @@
   <title>SIGE - Actualizar Emergencia</title>
 
   <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
 </head>
 
 <body>
@@ -37,7 +35,6 @@
 
         <div>
           <label>Tipo de Emergencia</label>
-
           <select id="tipo">
             <option value="">Seleccione</option>
             <option value="INCENDIO">Incendio</option>
@@ -51,7 +48,6 @@
 
         <div>
           <label>Prioridad</label>
-
           <select id="prioridad">
             <option value="">Seleccione</option>
             <option value="BAJA">Baja</option>
@@ -63,7 +59,6 @@
 
         <div>
           <label>Estado</label>
-
           <select id="estado">
             <option value="PENDIENTE">Pendiente</option>
             <option value="ASIGNADA">Asignada</option>
@@ -83,33 +78,42 @@
           <input type="text" id="direccion" placeholder="Ingrese dirección">
         </div>
 
+        <div>
+          <label>Institución asignada</label>
+          <select id="institucion_id">
+            <option value="">Seleccione institución</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Unidad asignada</label>
+          <select id="unidad_id">
+            <option value="">Seleccione unidad</option>
+          </select>
+        </div>
+
       </div>
 
       <br>
 
       <div>
         <label>Descripción</label>
-
-        <textarea 
-          id="descripcion" 
-          rows="5" 
-          placeholder="Describa la emergencia">
-        </textarea>
+        <textarea
+          id="descripcion"
+          rows="5"
+          placeholder="Describa la emergencia"></textarea>
       </div>
 
       <div class="acciones">
-
-        <button 
+        <button
           class="btn btn-guardar"
           onclick="actualizarEmergencia()">
-
           💾 Actualizar Emergencia
         </button>
 
         <a href="listar_emergencias.html" class="btn btn-volver">
           ⬅ Volver
         </a>
-
       </div>
 
       <div id="mensaje" class="mensaje"></div>
@@ -118,7 +122,19 @@
 
   </main>
 
-  <script src="js/actualizar_emergencias.js"></script>
+  <script src="Frontend-Routes/auth.js"></script>
+
+  <script>
+    verificarSesion();
+
+    permitirRoles([
+      'Administrador',
+      'Supervisor',
+      'Operador'
+    ]);
+  </script>
+
+  <script src="Frontend-Routes/actualizar_emergencias.js"></script>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>SIGE - Crear Emergencia</title>
@@ -16,6 +17,8 @@
     <a href="dashboard_emergencias.html">📊 Dashboard</a>
     <a href="listar_emergencias.html">🚨 Listar Emergencias</a>
     <a href="crear_emergencias.html">➕ Crear Emergencia</a>
+    <a href="instituciones.html">🏥 Instituciones</a>
+    <a href="unidades.html">🚑 Unidades</a>
     <a href="reportes_emergencias.html">📄 Reportes</a>
     <a href="login.html">🚪 Cerrar sesión</a>
   </aside>
@@ -33,6 +36,7 @@
 
         <div>
           <label>Tipo de Emergencia</label>
+
           <select id="tipo">
             <option value="">Seleccione</option>
             <option value="MEDICA">Médica</option>
@@ -46,6 +50,7 @@
 
         <div>
           <label>Prioridad</label>
+
           <select id="prioridad">
             <option value="">Seleccione</option>
             <option value="BAJA">Baja</option>
@@ -71,17 +76,33 @@
 
       <div>
         <label>Descripción</label>
-        <textarea id="descripcion" rows="5" placeholder="Describa la emergencia"></textarea>
+
+        <textarea
+          id="descripcion"
+          rows="5"
+          placeholder="Describa la emergencia"></textarea>
       </div>
 
       <div class="acciones">
-        <button class="btn btn-guardar" onclick="guardarEmergencia()">
+
+        <button
+          class="btn btn-guardar"
+          onclick="guardarEmergencia()">
           💾 Guardar Emergencia
         </button>
 
-        <a href="listar_emergencias.html" class="btn btn-volver">
-          ⬅ Volver
+        <a
+          href="listar_emergencias.html"
+          class="btn btn-volver">
+          📋 Volver al Listado
         </a>
+
+        <a
+          href="menu.html"
+          class="btn btn-volver">
+          🏠 Volver al Menú
+        </a>
+
       </div>
 
       <div id="mensaje" class="mensaje"></div>
@@ -90,7 +111,20 @@
 
   </main>
 
-  <script src="js/crear_emergencias.js"></script>
+  <script src="Frontend-Routes/auth.js"></script>
+
+  <script>
+    verificarSesion();
+
+    permitirRoles([
+      'Administrador',
+      'Supervisor',
+      'Operador'
+    ]);
+  </script>
+
+  <script src="Frontend-Routes/crear_emergencias.js"></script>
 
 </body>
+
 </html>

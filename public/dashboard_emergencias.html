@@ -10,11 +10,24 @@
 
 <body>
 
-  <header>
-    <h1>SIGE - Dashboard de Emergencias</h1>
-  </header>
+  <aside class="sidebar">
+    <h2>SIGE</h2>
 
-  <div class="contenedor">
+    <a href="menu.html">🏠 Inicio</a>
+    <a href="dashboard_emergencias.html">📊 Dashboard</a>
+    <a href="listar_emergencias.html">🚨 Emergencias</a>
+    <a href="instituciones.html">🏥 Instituciones</a>
+    <a href="unidades.html">🚑 Unidades</a>
+    <a href="reportes_emergencias.html">📄 Reportes</a>
+    <a href="login.html">🚪 Cerrar sesión</a>
+  </aside>
+
+  <main class="main">
+
+    <section class="header">
+      <h1>SIGE - Dashboard de Emergencias</h1>
+      <p>Resumen general de emergencias registradas.</p>
+    </section>
 
     <div class="cards">
       <div class="card">
@@ -52,9 +65,21 @@
 
     <a href="menu.html" class="volver">⬅ Volver al Menú</a>
 
-  </div>
+  </main>
 
-  <script src="js/dashboard.js"></script>
+  <script src="Frontend-Routes/auth.js"></script>
+
+  <script>
+    verificarSesion();
+
+    permitirRoles([
+      'Administrador',
+      'Supervisor',
+      'Operador'
+    ]);
+  </script>
+      
+  <script src="Frontend-Routes/dashboard.js"></script>
 
 </body>
 </html>

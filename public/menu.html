@@ -15,8 +15,13 @@
     <a href="menu.html">🏠 Inicio</a>
     <a href="dashboard_emergencias.html">📊 Dashboard</a>
     <a href="emergencias.html">🚨 Emergencias</a>
-    <a href="reportes_emergencias.html">📄 Reportes</a>
-    <a href="login.html">🚪 Cerrar sesión</a>
+    <a id="menuReportes" href="reportes_emergencias.html">📄 Reportes</a>
+    <a id="cardUsuarios" href="usuarios.html">👥 Usuarios</a>
+    <a href="instituciones.html">🏥 Instituciones</a>
+    <a href="unidades.html">🚑 Unidades</a>
+    
+
+    <a href="#" onclick="cerrarSesion()">🚪 Cerrar sesión</a>
   </aside>
 
   <main class="main">
@@ -40,21 +45,65 @@
         <p>Registrar, listar, actualizar y eliminar emergencias.</p>
       </a>
 
-      <a href="reportes_emergencias.html" class="card">
+      <a id="cardReportes" href="reportes_emergencias.html" class="card">
         <span>📄</span>
         <strong>Reportes</strong>
         <p>Consultar reportes generales, pendientes, resueltas y prioridad alta.</p>
       </a>
 
-      <a href="#" class="card">
+      <a id="cardUsuarios" href="usuarios.html" class="card">
         <span>👥</span>
         <strong>Usuarios</strong>
         <p>Módulo reservado para la administración de usuarios.</p>
       </a>
 
+
+      <a href="auditoria_emergencias.html" class="card">
+        <span>📋</span>
+        <strong>Auditoría Emergencias</strong>
+        <p>Visualizar historial de cambios realizados sobre las emergencias.</p>
+      </a>
+
+      <a href="logs_accesos.html" class="card">
+        <span>🔐</span>
+        <strong>Bitácora de Accesos</strong>
+        <p>Consultar los accesos exitosos y fallidos al sistema.</p>
+      </a>
+
+      <a href="instituciones.html" class="card">
+        <span>🏥</span>
+        <strong>Institucions</strong>
+        <p>Historial de las instituciones.</p>
+      </a>
+
+      <a href="unidades.html" class="card">
+        <span>🚑</span>
+        <strong>Unidades</strong>
+        <p>Historial de las unidades.</p>
+      </a>
+
+
     </section>
 
   </main>
+
+  <script src="Frontend-Routes/auth.js"></script>
+
+  <script>
+    verificarSesion();
+
+    const rol = localStorage.getItem('rol');
+
+    if (rol === 'Operador') {
+      document.getElementById('menuReportes').style.display = 'none';
+      document.getElementById('cardReportes').style.display = 'none';
+    }
+
+    if (rol !== 'Administrador') {
+      document.getElementById('menuUsuarios').style.display = 'none';
+      document.getElementById('cardUsuarios').style.display = 'none';
+    }
+  </script>
 
 </body>
 </html>

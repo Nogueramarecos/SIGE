@@ -22,18 +22,16 @@ async function cargarEmergencias() {
           </td>
           <td>${e.CIUDAD || ''}</td>
           <td>${e.DIRECCION || ''}</td>
+          <td>${e.INSTITUCION || 'Sin asignar'}</td>
+          <td>${e.UNIDAD || 'Sin asignar'}</td>
           <td>${e.DESCRIPCION || ''}</td>
           <td>
             <div class="acciones">
-              <a 
-                class="btn btn-editar" 
-                href="actualizar_emergencias.html?id=${e.EMERGENCIA_ID}">
+              <a class="btn btn-editar" href="actualizar_emergencias.html?id=${e.EMERGENCIA_ID}">
                 Editar
               </a>
 
-              <a 
-                class="btn btn-eliminar" 
-                href="eliminar_emergencias.html?id=${e.EMERGENCIA_ID}">
+              <a class="btn btn-eliminar" href="eliminar_emergencias.html?id=${e.EMERGENCIA_ID}">
                 Eliminar
               </a>
             </div>
@@ -48,7 +46,6 @@ async function cargarEmergencias() {
       pageLength: 5,
       lengthMenu: [5, 10, 25, 50],
       order: [[0, 'desc']],
-
       language: {
         search: 'Buscar:',
         lengthMenu: 'Mostrar _MENU_ registros',
@@ -57,7 +54,6 @@ async function cargarEmergencias() {
         infoFiltered: '(filtrado de _MAX_ registros totales)',
         zeroRecords: 'No se encontraron resultados',
         emptyTable: 'No hay emergencias registradas',
-
         paginate: {
           first: 'Primero',
           previous: 'Anterior',

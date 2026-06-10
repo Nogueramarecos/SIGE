@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>SIGE - Unidades</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <h2>SIGE</h2>
+
+    <a href="menu.html">🏠 Inicio</a>
+    <a href="dashboard_emergencias.html">📊 Dashboard</a>
+    <a href="listar_emergencias.html">🚨 Emergencias</a>
+    <a href="instituciones.html">🏥 Instituciones</a>
+    <a href="unidades.html">🚑 Unidades</a>
+    <a href="reportes_emergencias.html">📄 Reportes</a>
+    <a href="login.html">🚪 Cerrar sesión</a>
+  </aside>
+
+  <main class="main">
+
+    <section class="header">
+      <h1>Gestión de Unidades</h1>
+      <p>Registro de vehículos, disponibilidad y estado operativo.</p>
+    </section>
+
+    <section class="form-card">
+
+      <div class="form-grid">
+
+        <div>
+          <label>Institución</label>
+          <select id="institucion_id">
+            <option value="">Seleccione institución</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Código</label>
+          <input type="text" id="codigo" placeholder="Ej: AMB-002">
+        </div>
+
+        <div>
+          <label>Tipo de Unidad</label>
+          <select id="tipo">
+            <option value="">Seleccione</option>
+            <option value="AMBULANCIA">Ambulancia</option>
+            <option value="PATRULLERA">Patrullera</option>
+            <option value="CAMION_BOMBERO">Camión Bombero</option>
+            <option value="MOTOCICLETA">Motocicleta</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Estado</label>
+         <select id="estado">
+            <option value="DISPONIBLE">Disponible</option>
+            <option value="OCUPADA">Ocupada</option>
+            <option value="MANTENIMIENTO">Mantenimiento</option>
+            <option value="FUERA DE SERVICIO">Fuera de servicio</option>
+          </select>
+        </div>
+
+      </div>
+
+      <br>
+
+      <div>
+        <label>Descripción</label>
+        <textarea id="descripcion" rows="4" placeholder="Descripción de la unidad"></textarea>
+      </div>
+
+      <br>
+
+      <button class="btn btn-guardar" onclick="guardarUnidad()">
+        💾 Registrar Unidad
+      </button>
+
+    </section>
+
+    <section class="form-card">
+
+      <table id="tablaUnidades" class="display">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Institución</th>
+            <th>Código</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Activo</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+
+        <tbody></tbody>
+      </table>
+
+    </section>
+    <a href="menu.html" class="volver">
+      ⬅ Volver al Menú
+    </a>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+  <script src="Frontend-Routes/unidades.js"></script>
+
+</body>
+</html>
